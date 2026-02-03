@@ -1,0 +1,25 @@
+==============
+Incomplete Expression Blocks
+==============
+
+{ 0
+
+---
+
+(source_file
+  (block
+    (num)
+    (MISSING "}")))
+
+==============
+Another Incomplete Expression Block
+==============
+
+{ 42
+
+---
+
+(source_file
+  (block
+    (num)
+    (MISSING "}")))

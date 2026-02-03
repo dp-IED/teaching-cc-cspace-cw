@@ -1,0 +1,50 @@
+==============
+Single Expression Blocks
+==============
+
+{ 0 }
+{ 42 }
+{ true }
+{ false }
+{ "hello" }
+{ x }
+
+---
+
+(source_file
+  (block (num))
+  (block (num))
+  (block (bool))
+  (block (bool))
+  (block (string))
+  (block (identifier)))
+
+==============
+Expression Blocks with Values
+==============
+
+{123}
+{true}
+{"test"}
+
+---
+
+(source_file
+  (block (num))
+  (block (bool))
+  (block (string)))
+
+==============
+Expression Blocks with Identifiers
+==============
+
+{myVar}
+{_field}
+{abc}
+
+---
+
+(source_file
+  (block (identifier))
+  (block (identifier))
+  (block (identifier)))

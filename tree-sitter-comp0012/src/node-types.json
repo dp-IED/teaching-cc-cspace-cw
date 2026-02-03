@@ -1,5 +1,41 @@
 [
   {
+    "type": "additive",
+    "named": true,
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "multiplicative",
+            "named": true
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "additive",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "multiplicative",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "argument_list",
     "named": true,
     "fields": {},
@@ -8,19 +44,7 @@
       "required": false,
       "types": [
         {
-          "type": "bool",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "num",
-          "named": true
-        },
-        {
-          "type": "string",
+          "type": "logical_or",
           "named": true
         }
       ]
@@ -45,15 +69,7 @@
         "required": true,
         "types": [
           {
-            "type": "bool",
-            "named": true
-          },
-          {
-            "type": "num",
-            "named": true
-          },
-          {
-            "type": "string",
+            "type": "logical_or",
             "named": true
           }
         ]
@@ -63,7 +79,18 @@
   {
     "type": "block",
     "named": true,
-    "fields": {},
+    "fields": {
+      "expression": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "logical_or",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": false,
@@ -77,23 +104,11 @@
           "named": true
         },
         {
-          "type": "bool",
-          "named": true
-        },
-        {
-          "type": "identifier",
+          "type": "logical_or",
           "named": true
         },
         {
           "type": "method_call",
-          "named": true
-        },
-        {
-          "type": "num",
-          "named": true
-        },
-        {
-          "type": "string",
           "named": true
         }
       ]
@@ -103,6 +118,150 @@
     "type": "bool",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "comparison",
+    "named": true,
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "additive",
+            "named": true
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "comparison",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "additive",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "equality",
+    "named": true,
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "comparison",
+            "named": true
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "equality",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "comparison",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "logical_and",
+    "named": true,
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "equality",
+            "named": true
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "logical_and",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "equality",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "logical_or",
+    "named": true,
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "logical_and",
+            "named": true
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "logical_or",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "logical_and",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "method_call",
@@ -141,6 +300,42 @@
     }
   },
   {
+    "type": "multiplicative",
+    "named": true,
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "unary",
+            "named": true
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "multiplicative",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "unary",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "source_file",
     "named": true,
     "fields": {},
@@ -157,15 +352,56 @@
           "named": true
         },
         {
+          "type": "logical_or",
+          "named": true
+        },
+        {
+          "type": "method_call",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "string",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "unary",
+    "named": true,
+    "fields": {
+      "expression": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "logical_or",
+            "named": true
+          }
+        ]
+      },
+      "operand": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "unary",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
           "type": "bool",
           "named": true
         },
         {
           "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "method_call",
           "named": true
         },
         {
@@ -180,12 +416,23 @@
     }
   },
   {
-    "type": "string",
-    "named": true,
-    "fields": {}
+    "type": "!",
+    "named": false
+  },
+  {
+    "type": "!=",
+    "named": false
   },
   {
     "type": "\"",
+    "named": false
+  },
+  {
+    "type": "%",
+    "named": false
+  },
+  {
+    "type": "&&",
     "named": false
   },
   {
@@ -197,11 +444,47 @@
     "named": false
   },
   {
+    "type": "*",
+    "named": false
+  },
+  {
+    "type": "+",
+    "named": false
+  },
+  {
+    "type": "-",
+    "named": false
+  },
+  {
     "type": ".",
     "named": false
   },
   {
+    "type": "/",
+    "named": false
+  },
+  {
+    "type": "<",
+    "named": false
+  },
+  {
+    "type": "<=",
+    "named": false
+  },
+  {
     "type": "=",
+    "named": false
+  },
+  {
+    "type": "==",
+    "named": false
+  },
+  {
+    "type": ">",
+    "named": false
+  },
+  {
+    "type": ">=",
     "named": false
   },
   {
@@ -230,6 +513,10 @@
   },
   {
     "type": "{",
+    "named": false
+  },
+  {
+    "type": "||",
     "named": false
   },
   {

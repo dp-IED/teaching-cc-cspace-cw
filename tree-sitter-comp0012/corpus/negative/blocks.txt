@@ -9,5 +9,7 @@ Numbers (nums)
 
 (source_file
       (num)
-      (ERROR
-        (num)))
+      (ERROR)
+      (block
+        (num)
+        (MISSING "}")))
